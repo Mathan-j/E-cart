@@ -39,7 +39,8 @@ app.get('*',(req,res)=>{
     res.sendFile(path.join(__dirname, '../client/dist/index.html')); // serve the built index.html file
 })
 
-const PORT = process.env.PORT ; // get port from environment variable  
+const PORT = process.env.PORT || 3000; // Default to 3000 if PORT is not defined
+// get port from environment variable  
 
 
 app.listen(PORT,()=>{

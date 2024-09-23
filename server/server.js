@@ -8,10 +8,10 @@ const cors = require('cors');
 const passport = require('./src/config/passport-config');
 
 app.use(cors({
-    orgin:["http://localhost:3000"],
-    credentials:true
-}
-)); //enable cors for cross origin requests
+    origin: process.env.CORS_ORIGIN || "http://localhost:3000", // Change to your production URL
+    credentials: true
+}));
+
 
 
 

@@ -34,13 +34,15 @@ app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
 
 app.use(express.static(path.join(__dirname, '../client/dist'))); // serve static files from the build folder
+ 
 
-app.get('*',(req,res)=>{
-    res.sendFile(path.join(__dirname, '../client/dist/index.html')); // serve the built index.html file
-})
+// Serve static files from the client build folder
+app.use(express.static(path.join(__dirname, 'client', 'dist'))); // Ensure correct path
 
-const PORT = process.env.PORT || 3000; // Default to 3000 if PORT is not defined
-// get port from environment variable  
+// For any other routes, serve the built index.html file
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html')); // Ensure correct path
+});
 
 
 app.listen(PORT,()=>{
